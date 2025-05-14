@@ -122,7 +122,7 @@ GET http://localhost:3000/stocks/stockcorrelation?ticker=AAPL&ticker2=GOOGL&minu
 4. Start the server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
    The server will run on `http://localhost:3000`.
@@ -160,17 +160,123 @@ The API responds with appropriate HTTP status codes:
 
 * **Node.js**: Backend framework for handling API requests.
 * **Express.js**: Web framework for building RESTful APIs.
-* **Axios**: Used to fetch stock data (if applicable).
-* **MUI**: For UI components in the frontend (if you plan to integrate this API with a frontend).
+
+Here’s a README file template for the frontend UI of your stock aggregation project, assuming it’s located in a separate folder (e.g., `stock-aggregation-ui`) within the repository or as a separate project.
 
 ---
 
-## Contributing
+# Stock Aggregation UI
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Commit your changes.
-4. Push to the branch.
-5. Open a pull request with a clear description of the changes.
+This is the frontend for the Stock Aggregation API. The UI allows users to input stock tickers, specify time intervals, and view the stock data, along with its correlation with other stock prices, displayed in an easy-to-understand format.
+
+## Features
+
+* **Input for Stock Tickers**: Allows the user to input two stock ticker symbols.
+* **Input for Time Interval**: Users can specify the minute interval for stock data aggregation.
+* **Correlation Heatmap**: Displays a heatmap showing the correlation between two stock prices.
+* **Error Handling**: Shows appropriate error messages if data is not found or if an invalid request is made.
+
+## Installation
+
+To get the UI up and running locally, follow the steps below:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/1byinf8/ENG22CS0155.git
+   cd ENG22CS0155/stock-aggregation-ui
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+   The UI will be available at `http://localhost:5173`.
 
 ---
+
+## Components
+
+### 1. **CorrelationPage.js**
+
+This is the main page where users can input two stock tickers and a minute interval to fetch the correlation data and view the heatmap.
+
+#### Key Features:
+
+* **TextField Components**: For users to input stock tickers and minute intervals.
+* **Button Component**: To trigger fetching of correlation data.
+* **Grid Layout**: Used for arranging the UI components responsively.
+* **HeatMapChart**: Displays the correlation heatmap once data is fetched.
+
+---
+
+### 2. **HeatMapChart.js**
+
+This component displays the heatmap based on the correlation data fetched from the backend.
+
+---
+
+### 3. **Error Handling**
+
+If the API fails to fetch the data or there are issues with the input, error messages will be displayed in a Snackbar.
+
+---
+
+## UI Flow
+
+### 1. **Initial View**:
+
+* Users see input fields for `Ticker 1`, `Ticker 2`, and `Minutes`.
+* There is a "Get Correlation" button that, when clicked, triggers the API request.
+
+### 2. **Submitting Data**:
+
+* When the user clicks the button, the data is sent to the backend via a GET request (`/stocks/stockcorrelation`).
+
+### 3. **Displaying Results**:
+
+* If the API request is successful, the correlation value is displayed.
+* A heatmap chart is rendered based on the correlation value.
+
+### 4. **Error Handling**:
+
+* If no data is found or there is an issue, an error message is displayed in the form of a Snackbar at the bottom of the UI.
+
+---
+
+## Technologies Used
+
+* **React.js**: Frontend library for building the user interface.
+* **MUI**: Material-UI library for responsive design and components like TextField, Button, Snackbar, etc.
+* **Axios**: For making HTTP requests to the backend API.
+* **React Router**: For handling any potential page navigation (if used in your project).
+
+---
+
+## Example Usage
+
+1. **Fetch Correlation between AAPL and GOOGL**:
+
+   * Input `AAPL` for Ticker 1, `GOOGL` for Ticker 2, and `15` for Minutes.
+   * Click the "Get Correlation" button to view the correlation and the heatmap.
+
+2. **Error Example**:
+
+   * If invalid tickers are entered or the API is down, an error message will show in a Snackbar at the bottom of the page.
+
+---
+
+## Running the Project
+
+1. Clone the repository.
+2. Navigate to the frontend project folder (`stock-aggregation-ui`).
+3. Install dependencies using `npm install`.
+4. Run the app using `npm run dev`.
