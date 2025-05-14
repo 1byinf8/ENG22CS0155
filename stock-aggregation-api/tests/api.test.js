@@ -2,8 +2,8 @@ import request from 'supertest';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { getStockData } from '../helpers/getStockDataModule.js';
-import { findCorrelation } from '../helpers/findCorrelationModule.js';
+import { getStockData } from '../helpers/getStockDataModule.mjs';
+import { findCorrelation } from '../helpers/findCorrelationModule.mjs';
 
 // Setup the app for testing
 const app = express();

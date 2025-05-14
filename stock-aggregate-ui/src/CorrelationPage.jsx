@@ -1,6 +1,6 @@
 // src/pages/CorrelationHeatmapPage.js
 import React, { useState } from 'react';
-import { TextField, Button, Grid, Typography, Paper } from '@mui/material';
+import { TextField, Button, Grid, Typography, Paper, Alert } from '@mui/material';
 import axios from 'axios';
 import HeatMapChart from './components/HeatMapChart';
 
@@ -9,15 +9,23 @@ const CorrelationPage = () => {
   const [ticker2, setTicker2] = useState('');
   const [minutes, setMinutes] = useState('');
   const [result, setResult] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSubmit = async () => {
+    setError(''); // Clear previous errors
     try {
       const res = await axios.get('http://localhost:3000/stocks/stockcorrelation', {
         params: { ticker: ticker1, ticker2, minutes },
       });
-      setResult(res.data);
+
+      if (res.data.error) {
+        setError(res.data.error); // If the response contains an error, display it
+      } else {
+        setResult(res.data);
+      }
     } catch (error) {
       console.error('Error fetching correlation data', error);
+      setError('An error occurred while fetching data.');
     }
   };
 
@@ -43,7 +51,13 @@ const CorrelationPage = () => {
         </Button>
       </Grid>
 
-      {result && (
+      {error && (
+        <Grid item xs={12}>
+          <Alert severity="error">{error}</Alert>
+        </Grid>
+      )}
+
+      {result && !error && (
         <>
           <Grid item xs={12}>
             <Paper elevation={3} sx={{ padding: 2 }}>
