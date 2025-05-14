@@ -1,4 +1,4 @@
-export function findCorrelation() {
+export function findCorrelation(prices1, prices2) {
     const covariance = calculateCovariance(prices1, prices2);
     const sd1 = calculateStandardDeviation(prices1);
     const sd2 = calculateStandardDeviation(prices2);

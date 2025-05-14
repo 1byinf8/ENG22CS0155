@@ -1,13 +1,16 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { getStockData } from './helpers/getStockDataModule.js';
-import { findCorrelation } from './helpers/findCorrelationModule.js';
+import { getStockData } from './helpers/getStockDataModule.mjs';
+import { findCorrelation } from './helpers/findCorrelationModule.mjs';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    'origin': 'http://localhost:5173',
+    'methods': ['GET', 'POST'],
+}));
 app.use(bodyParser.json());
 
 app.get('/stocks/ticker', async (req, res) => {
@@ -60,9 +63,12 @@ app.get('/stocks/stockcorrelation', async (req, res) => {
             return res.status(404).json({ error: 'Stock data not found' });
         }
 
+        const prices1 = data1.map(item => item.price);
+        const prices2 = data2.map(item => item.price);
+
         const average1 = data1.reduce((acc, data) => acc + (data.price || 0), 0) / data1.length;
         const average2 = data2.reduce((acc, data) => acc + (data.price || 0), 0) / data2.length;
-        const correlation = findCorrelation(data1, data2);
+        const correlation = findCorrelation(prices1, prices2);
 
         const response = {
             correlation,

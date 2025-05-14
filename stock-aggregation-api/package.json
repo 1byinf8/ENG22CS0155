@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "types": "module",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "jest",
-    "dev": "node index.js"
+    "dev": "node index.mjs"
   },
   "jest": {
     "transform": {
