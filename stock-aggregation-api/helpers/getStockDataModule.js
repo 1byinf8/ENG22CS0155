@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 import { config } from 'dotenv';
-config({ path: 'env/token.env' }); // Load token.env
+config({ path: 'env/token.env' }); 
 
-// Cache for the Personal Access Token
+
 let accessToken = null;
 const AUTH_URL = 'http://20.244.56.144/evaluation-service/auth';
 const STOCKS_URL = 'http://20.244.56.144/evaluation-service/stocks';
 
-// Function to fetch a new Personal Access Token
+
 async function fetchAccessToken() {
   const authPayload = {
     email: process.env.EMAIL || '',
@@ -54,7 +54,6 @@ async function fetchAccessToken() {
   }
 }
 
-// Function to get stock data with token-based authentication
 export async function getStockData(ticker, min) {
   if (!accessToken) {
     accessToken = await fetchAccessToken();
