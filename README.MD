@@ -1,6 +1,4 @@
-Here's a README file template for your [stock-aggregation-api](https://github.com/1byinf8/ENG22CS0155/tree/main/stock-aggregation-api) project. This will help explain the project's functionality, how to set it up, and how to interact with it.
 
----
 
 # Stock Aggregation API
 
@@ -176,11 +174,3 @@ The API responds with appropriate HTTP status codes:
 5. Open a pull request with a clear description of the changes.
 
 ---
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-Feel free to customize the README with any additional details specific to your project or development setup. Let me know if you'd like to adjust anything!
