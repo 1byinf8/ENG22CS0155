@@ -1,7 +1,6 @@
-
+![Alt text](image2.png "Chart")
 ![Alt text](image.png "Heatmap")
 
-! [Alt text](image2.png "chart")
 # Stock Aggregation API
 
 This is a backend API for aggregating and analyzing stock price data. The API allows users to fetch stock prices, calculate correlation between the prices of two different stocks, and handle minute-level aggregation of stock data.
